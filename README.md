@@ -1,1 +1,17 @@
-# -
+# -graph TD
+    A[开始] --> B[输入城市个数n]
+    B --> C[输入城市之间的距离dist]
+    C --> D[输入起点编号k]
+    D --> E[初始化dp数组为INF]
+    E --> F[设置dp[1 << k][k] = 0]
+    F --> G[遍历所有状态mask (从0到(1 << n) - 1)]
+    G --> H[遍历每个城市u]
+    H --> I[如果u不在mask中，跳过]
+    I --> J[遍历每个城市v]
+    J --> K[如果v已在mask中，跳过]
+    K --> L[计算下一状态nextMask = mask | (1 << v)]
+    L --> M[更新dp[nextMask][v] = min(dp[nextMask][v], dp[mask][u] + dist[u][v])]
+    M --> G
+    G --> N[计算最短路径结果res]
+    N --> O[输出最短路径res]
+    O --> P[结束]
